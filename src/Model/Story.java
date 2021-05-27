@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Story {
-    private final int ID = counter;
-    private static int counter = 0;
-
+    private int ID;
+    private Category category;
     private int rating;
     private ArrayList<Creator> creatorList;
     private HashSet<String> sourceSet;
@@ -15,9 +14,9 @@ public class Story {
     private String title;
     private Length length;
 
-    public Story(int rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
+    public Story(Category category, int rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
                  HashSet<String> genreSet, String title){
-
+        this.category = category;
         this.rating = rating;
         this.creatorList = creatorList;
         this.sourceSet = sourceSet;
@@ -25,66 +24,84 @@ public class Story {
         this.genreSet = genreSet;
         this.title = title;
         this.length = length;
-
-        counter++;
     }
 
-    int getID(){
+    public Category getCategory(){
+        return category;
+    }
+
+    @Override
+    public int hashCode(){
+        int hashCode = category.hashCode() + title.hashCode() + length.hashCode();
+        ID = hashCode;
+        return hashCode;
+    }
+
+    public int getID(){
         return ID;
     }
 
-    int getRating(){
+    public int getRating(){
         return rating;
     }
 
-    ArrayList<Creator> getCreatorList(){
+    public ArrayList<Creator> getCreatorList(){
         return creatorList;
     }
+
+    public String getStringCreatorList(){
+        String string = "[";
+        for(Creator creator: creatorList){
+            ;
+        }
+        return null;
+    }
+
     public Length getLength(){
         return length;
     }
 
-    HashSet<String> getSourceSet(){
+    public HashSet<String> getSourceSet(){
         return sourceSet;
     }
 
-    String getReview(){
+    public String getReview(){
         return review;
     }
 
-    HashSet<String> getGenreSet(){
+    public HashSet<String> getGenreSet(){
         return genreSet;
     }
 
-    String getTitle(){
+    public String getTitle(){
         return title;
     }
 
-    void setRating(int rating){
+    public void setRating(int rating){
         this.rating = rating;
     }
 
-    void addCreator(Creator creator){
+    public void addCreator(Creator creator){
         creatorList.add(creator);
     }
 
-    void removeCreator(Creator creator){
+    public void removeCreator(Creator creator){
         creatorList.remove(creator);
     }
 
-    void setLength(Length length){
+    public void setLength(Length length){
         this.length = length;
     };
 
-    void setReview(String review){
+    public void setReview(String review){
         this.review = review;
     }
 
-    void addGenre(String genre){
+    public void addGenre(String genre){
         genreSet.add(genre);
     }
 
-    void removeGenre(String genre){
+    public void removeGenre(String genre){
         genreSet.remove(genre);
     }
 }

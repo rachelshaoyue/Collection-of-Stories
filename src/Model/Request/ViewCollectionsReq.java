@@ -27,7 +27,7 @@ public class ViewCollectionsReq implements Request{
         if(user.getCollectionList().size() != 0){
             return message;
         }else{
-            throw new NotFoundException("No collections found!");
+            throw new NotFoundException("\nNo collections found!\n");
         }
     }
 }
