@@ -12,9 +12,9 @@ public class HelpReq implements Request{
     public void execute() {
         message = "";
         switch (argument) {
-            case "delAccount" -> {
+            case "deleteAccount" -> {
                 message += "Delete your account\n";
-                message += "\tType in /delAccount <Your Name> to delete your account\n";
+                message += "\tType in /deleteAccount <Username> <Password> to delete your account\n";
             }
             case "signOff" -> {
                 message += "Sign off\n";
@@ -39,7 +39,7 @@ public class HelpReq implements Request{
             default -> {
                 message += "Help Menu\n";
                 message += "\tType in /help <Request Argument> to see more info!\n";
-                message += "\tRequest Arguments: [delAccount] [signOff] [viewCollections] [addCollection] [removeCollection] [renameCollection]\n";
+                message += "\tRequest Arguments: [deleteAccount] [signOff] [viewCollections] [addCollection] [removeCollection] [renameCollection]\n";
             }
         }
     }

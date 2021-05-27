@@ -33,15 +33,16 @@ public class DataReader {
     public void readCollections(User user) throws FileNotFoundException {
         File folder = new File(DATA_FILES + user.getUsername() + "'s Collections");
         File[] files = folder.listFiles();
-        assert files != null;
-        for (File file : files) {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String data = scanner.nextLine();
-                String[] fields = data.split(",");
-                user.addCollection(new Collection(Integer.parseInt(fields[0]), fields[1]));
+        if(files != null) {
+            for (File file : files) {
+                Scanner scanner = new Scanner(file);
+                while (scanner.hasNextLine()) {
+                    String data = scanner.nextLine();
+                    String[] fields = data.split(",");
+                    user.addCollection(new Collection(Integer.parseInt(fields[0]), fields[1]));
+                }
+                scanner.close();
             }
-            scanner.close();
         }
     }
 

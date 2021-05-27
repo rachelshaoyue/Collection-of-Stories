@@ -19,10 +19,10 @@ public class CommandLine {
     }
 
     public void start() throws Exception {
-        System.out.println("Welcome to the Collection System");
+        System.out.println("\nWelcome to the Collection System");
         BufferedReader standardInput = new BufferedReader(new InputStreamReader(System.in));
         while(true) {
-            System.out.print("\nType in 1 to sign in or 2 to sign up\n\nEnter your input: ");
+            System.out.print("\nType in 1 to sign in or 2 to sign up or\n\nEnter your input: ");
             String userInput = standardInput.readLine();
             if (userInput.equals("1") || userInput.equals("2")) {
                 if(login(standardInput, userInput)){
@@ -34,10 +34,10 @@ public class CommandLine {
     }
 
     public boolean login(BufferedReader standardInput, String input) {
-        Request request = null;
+        Request request;
         while(true) {
             try{
-                sleep(50);
+                sleep(30);
                 if (input.equals("1")) {
                     System.out.print("\nEnter Your Username: ");
                     String username = standardInput.readLine();
@@ -51,7 +51,6 @@ public class CommandLine {
                     String password = standardInput.readLine();
                     request = new SignUpReq(username, password, systemUsers);
                 }
-                assert request != null;
                 request.execute();
                 if(request instanceof SignInReq){
                     SignInReq req = (SignInReq) request;
@@ -73,7 +72,7 @@ public class CommandLine {
     public void readLoop(BufferedReader standardInput) throws Exception {
         while(true){
             try {
-                sleep(50);
+                sleep(30);
                 System.out.print("Enter Request: ");
                 String userInput = standardInput.readLine();
                 parseInput(userInput);
@@ -94,6 +93,21 @@ public class CommandLine {
                 } else {
                     request = new HelpReq("");
                 }
+                break;
+            case "/deleteAccount":
+                if (fields.length == 3) {
+                        String username = fields[1];
+                        String password = fields[2];
+                        request = new DeleteAccountReq(username, password, systemUsers);
+                        currentUser = null;
+                        break;
+                }else{
+                    displayHelp();
+                    break;
+                }
+            case "/signOff":
+                request = new SignOffReq();
+                currentUser = null;
                 break;
             case "/addCollection":
                 request = new AddCollectionReq(currentUser);
@@ -139,6 +153,9 @@ public class CommandLine {
             System.out.println(request.getResponse());
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+        if(currentUser == null){
+            start();
         }
     }
     

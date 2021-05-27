@@ -6,8 +6,6 @@ import Model.Collection;
 import Model.CustomException.UnapprovedUsernameException;
 import Model.User;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class SignUpReq implements Request{
@@ -18,23 +16,22 @@ public class SignUpReq implements Request{
     private User currentUser;
 
     public SignUpReq(String username, String password, HashMap<String, User> systemUsers){
-        this.username = username;
+        this.username = username.toLowerCase();
         this.password = password;
         this.systemUsers = systemUsers;
     }
 
     @Override
     public void execute() {
-        String lowerUsername = username.toLowerCase();
-        for(int i=0; i<lowerUsername.length(); i++){
-            char character = lowerUsername.charAt(i);
+        for(int i=0; i<username.length(); i++){
+            char character = username.charAt(i);
             if(!(character == 95 || (character >= 97 && character <= 122) || (character >= 48 && character <= 57))){
                 code = 1;
                 break;
             }
         }
         for(User user: systemUsers.values()){
-            if (user.getUsername().toLowerCase().equals(lowerUsername)) {
+            if (user.getUsername().equals(username)) {
                 code = 2;
                 break;
             }
