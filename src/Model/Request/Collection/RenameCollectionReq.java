@@ -1,12 +1,13 @@
-package Model.Request;
+package Model.Request.Collection;
 
 import Application.DataWriter;
 import Model.Collection;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class RenameCollectionReq implements Request{
+public class RenameCollectionReq implements Request {
     private User user;
     private final int ID;
     private final String newName;

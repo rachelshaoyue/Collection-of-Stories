@@ -1,12 +1,13 @@
-package Model.Request;
+package Model.Request.Account;
 
 import Application.DataWriter;
 import Model.CustomException.UnAuthenticatedException;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class DeleteAccountReq implements Request{
+public class DeleteAccountReq implements Request {
     private final String username;
     private final String password;
     private HashMap<String, User> systemUsers;

@@ -12,20 +12,14 @@ public class BookLength implements Length{
     @Override
     public String getInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Length:");
+        info.append("\n\tLength:");
         if(volumes != 0){
-            info.append("\t" + volumes + " volumes\n");
+            info.append("\n\t\t").append(volumes).append(" volume(s)");
         }
-        info.append("\t" + pages + " pages\n");
+        if(pages != 0) {
+            info.append("\n\t\t").append(pages).append(" page(s)");
+        }
         return info.toString();
-    }
-
-    public int getVolumes(){
-        return volumes;
-    }
-
-    public int getPages(){
-        return pages;
     }
 
     public void setVolumes(int volumes){

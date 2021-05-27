@@ -1,11 +1,12 @@
-package Model.Request;
+package Model.Request.Account;
 
 import Model.CustomException.UnAuthenticatedException;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class SignInReq implements Request{
+public class SignInReq implements Request {
     private final String username;
     private final String password;
     private HashMap<String, User> systemUsers;

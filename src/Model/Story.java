@@ -1,7 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Story {
     private int ID;
@@ -14,8 +16,8 @@ public class Story {
     private String title;
     private Length length;
 
-    public Story(Category category, int rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
-                 HashSet<String> genreSet, String title){
+    public Story(String title, Category category, int rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
+                 HashSet<String> genreSet){
         this.category = category;
         this.rating = rating;
         this.creatorList = creatorList;
@@ -26,15 +28,15 @@ public class Story {
         this.length = length;
     }
 
-    public Category getCategory(){
-        return category;
-    }
-
     @Override
     public int hashCode(){
         int hashCode = category.hashCode() + title.hashCode() + length.hashCode();
         ID = hashCode;
         return hashCode;
+    }
+
+    public Category getCategory(){
+        return category;
     }
 
     public int getID(){
@@ -50,11 +52,13 @@ public class Story {
     }
 
     public String getStringCreatorList(){
-        String string = "[";
-        for(Creator creator: creatorList){
-            ;
+        String string = "\n\tCreated by:";
+        if(creatorList != null) {
+            for (Creator creator : creatorList) {
+                string += "\n\t\t" + creator.getName();
+            }
         }
-        return null;
+        return string;
     }
 
     public Length getLength(){
@@ -65,12 +69,32 @@ public class Story {
         return sourceSet;
     }
 
+    public String getStringSourceSet(){
+        String string = "\n\tSource(s):";
+        if(sourceSet != null) {
+            for (String source : sourceSet) {
+                string += "\n\t\t" + source;
+            }
+        }
+        return string;
+    }
+
     public String getReview(){
         return review;
     }
 
     public HashSet<String> getGenreSet(){
         return genreSet;
+    }
+
+    public String getStringGenreSet(){
+        String string = "\n\tGenre(s):";
+        if(genreSet != null) {
+            for (String genre : genreSet) {
+                string += "\n\t\t" + genre;
+            }
+        }
+        return string;
     }
 
     public String getTitle(){
@@ -103,5 +127,32 @@ public class Story {
 
     public void removeGenre(String genre){
         genreSet.remove(genre);
+    }
+
+    public String getInfo(){
+        String info = title + " (" + category.toString() + ") Information:";
+        info += getStringCreatorList();
+        info += getStringGenreSet();
+        info += getStringSourceSet();
+        info += length.getInfo();
+        info += "\n\tRating:\n\t\t" + rating;
+        info += "\n\tReview:\n\t\t" + review;
+        return info;
+    }
+
+    public static void main(String[] args){
+        ArrayList<Creator> creators = new ArrayList<>();
+        Creator creator = new Creator("Bryan Fuller");
+        creators.add(creator);
+        Length length = new VideoLength(43, 39, 3);
+        HashSet<String> sourceSet = new HashSet<>();
+        sourceSet.add("Netflix");
+        sourceSet.add("Amazon Prime");
+        String review = "MY FAVVVVV";
+        HashSet<String> genreset = new HashSet<>();
+        genreset.add("Psychological horror");
+        String title = "Hannibal";
+        Story story = new Story(title, Category.TV_SHOW, 10, null, new BookLength(345, 1234),
+                null, "", null);
     }
 }

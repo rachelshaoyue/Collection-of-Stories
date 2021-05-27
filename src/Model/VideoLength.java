@@ -11,18 +11,6 @@ public class VideoLength implements Length{
         this.seasons = seasons;
     }
 
-    public int getDuration(){
-        return duration;
-    }
-
-    public int getEpisodes(){
-        return episodes;
-    }
-
-    public int getSeasons(){
-        return seasons;
-    }
-
     public void setDuration(int duration){
         this.duration = duration;
     }
@@ -38,17 +26,17 @@ public class VideoLength implements Length{
     @Override
     public String getInfo() {
         StringBuilder info = new StringBuilder();
-        info.append("Length:");
+        info.append("\n\tLength:");
         if(seasons != 0){
-            info.append("\t" + seasons + " seasons\n");
+            info.append("\n\t\t").append(seasons).append(" season(s)");
         }
         if(episodes != 0){
-            info.append("\t" + episodes + " episodes\n");
+            info.append("\n\t\t").append(episodes).append(" episode(s)");
         }
         if(duration != 0) {
             int hours = duration / 60;
             int minutes = duration % 60;
-            info.append("\t" + hours + "h " + minutes + "m\n");
+            info.append("\n\t\t").append(hours).append("h ").append(minutes).append("m");
         }
         return info.toString();
     }

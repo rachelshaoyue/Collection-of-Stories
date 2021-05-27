@@ -1,14 +1,15 @@
-package Model.Request;
+package Model.Request.Account;
 
 import Application.DataReader;
 import Application.DataWriter;
 import Model.Collection;
 import Model.CustomException.UnapprovedUsernameException;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class SignUpReq implements Request{
+public class SignUpReq implements Request {
     private final String username;
     private final String password;
     private HashMap<String, User> systemUsers;

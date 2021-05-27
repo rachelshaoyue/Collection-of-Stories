@@ -1,12 +1,13 @@
-package Model.Request;
+package Model.Request.Collection;
 
 import Model.Collection;
 import Model.CustomException.NotFoundException;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class ViewCollectionsReq implements Request{
+public class ViewCollectionsReq implements Request {
     private User user;
     private String message = "\nCollections:\n";
 

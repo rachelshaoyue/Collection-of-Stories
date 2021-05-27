@@ -1,6 +1,9 @@
 package Controller;
 
 import Model.Request.*;
+import Model.Request.Collection.*;
+import Model.Request.Account.*;
+import Model.Request.Story.*;
 import Model.User;
 
 import java.io.BufferedReader;
@@ -144,6 +147,8 @@ public class CommandLine {
                     displayHelp();
                     break;
                 }
+            case "/addStory":
+                request = new AddStoryReq(currentUser);
             default:
                 displayHelp();
                 break;

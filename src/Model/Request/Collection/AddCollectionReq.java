@@ -1,10 +1,11 @@
-package Model.Request;
+package Model.Request.Collection;
 
 import Application.DataWriter;
 import Model.Collection;
+import Model.Request.Request;
 import Model.User;
 
-public class AddCollectionReq implements Request{
+public class AddCollectionReq implements Request {
     private final User user;
 
     public AddCollectionReq(User user){

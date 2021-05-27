@@ -1,13 +1,14 @@
-package Model.Request;
+package Model.Request.Collection;
 
 import Application.DataWriter;
 import Model.Collection;
 import Model.CustomException.NotFoundException;
+import Model.Request.Request;
 import Model.User;
 
 import java.util.HashMap;
 
-public class RemoveCollectionReq implements Request{
+public class RemoveCollectionReq implements Request {
     private User user;
     private final int ID;
     private boolean flag = false;

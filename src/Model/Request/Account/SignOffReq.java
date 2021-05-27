@@ -1,6 +1,8 @@
-package Model.Request;
+package Model.Request.Account;
 
-public class SignOffReq implements Request{
+import Model.Request.Request;
+
+public class SignOffReq implements Request {
     public SignOffReq(){
     }
 
