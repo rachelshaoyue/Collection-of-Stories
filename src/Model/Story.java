@@ -1,14 +1,12 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class Story {
     private int ID;
     private Category category;
-    private int rating;
+    private String rating;
     private ArrayList<Creator> creatorList;
     private HashSet<String> sourceSet;
     private String review;
@@ -16,7 +14,7 @@ public class Story {
     private String title;
     private Length length;
 
-    public Story(String title, Category category, int rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
+    public Story(String title, Category category, String rating, ArrayList<Creator> creatorList, Length length, HashSet<String> sourceSet, String review,
                  HashSet<String> genreSet){
         this.category = category;
         this.rating = rating;
@@ -26,13 +24,12 @@ public class Story {
         this.genreSet = genreSet;
         this.title = title;
         this.length = length;
+        ID = hashCode();
     }
 
     @Override
     public int hashCode(){
-        int hashCode = category.hashCode() + title.hashCode() + length.hashCode();
-        ID = hashCode;
-        return hashCode;
+        return category.hashCode() + title.hashCode() + length.hashCode();
     }
 
     public Category getCategory(){
@@ -43,7 +40,7 @@ public class Story {
         return ID;
     }
 
-    public int getRating(){
+    public String getRating(){
         return rating;
     }
 
@@ -101,7 +98,7 @@ public class Story {
         return title;
     }
 
-    public void setRating(int rating){
+    public void setRating(String rating){
         this.rating = rating;
     }
 
@@ -137,6 +134,7 @@ public class Story {
         info += length.getInfo();
         info += "\n\tRating:\n\t\t" + rating;
         info += "\n\tReview:\n\t\t" + review;
+        info += "\n\tID:\n\t\t" + ID;
         return info;
     }
 
@@ -144,7 +142,7 @@ public class Story {
         ArrayList<Creator> creators = new ArrayList<>();
         Creator creator = new Creator("Bryan Fuller");
         creators.add(creator);
-        Length length = new VideoLength(43, 39, 3);
+        Length length = new Length("", "", 0, "", "");
         HashSet<String> sourceSet = new HashSet<>();
         sourceSet.add("Netflix");
         sourceSet.add("Amazon Prime");
@@ -152,7 +150,7 @@ public class Story {
         HashSet<String> genreset = new HashSet<>();
         genreset.add("Psychological horror");
         String title = "Hannibal";
-        Story story = new Story(title, Category.TV_SHOW, 10, null, new BookLength(345, 1234),
+        Story story = new Story(title, Category.TV_SHOW, "", null, length,
                 null, "", null);
     }
 }

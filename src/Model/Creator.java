@@ -3,15 +3,11 @@ package Model;
 import java.util.ArrayList;
 
 public class Creator {
-    private final int ownerID = counter;
-    private static int counter = 0;
-
     private String name;
     private ArrayList<Story> storyList;
 
     public Creator(String name){
         this.name = name;
-        counter++;
     }
 
     public String getName(){
@@ -32,14 +28,5 @@ public class Creator {
 
     public ArrayList<Story> getStoryList(){
         return storyList;
-    }
-
-    public int getRating(){
-        int totalRating = 0;
-        for(Story story: storyList){
-            int rating = story.getRating();
-            totalRating += rating;
-        }
-        return totalRating / storyList.size();
     }
 }
